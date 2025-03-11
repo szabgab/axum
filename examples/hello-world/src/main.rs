@@ -5,7 +5,6 @@
 //! ```
 
 use axum::{response::Html, routing::get, Router};
-
 #[tokio::main]
 async fn main() {
     // build our application with a route
@@ -21,4 +20,17 @@ async fn main() {
 
 async fn handler() -> Html<&'static str> {
     Html("<h1>Hello, World!</h1>")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use axum::response::Html;
+
+    #[tokio::test]
+    async fn test_handler() {
+        let response = handler().await;
+        let Html(content) = response;
+        assert_eq!(content, "<h1>Hello, World!</h1>");
+    }
 }
