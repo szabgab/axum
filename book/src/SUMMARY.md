@@ -1,6 +1,6 @@
 # Summary
 
-- [Axum](./index.md)
+- [axum](./index.md)
 - [ECOSYSTEM](./ecosystem.md)
 - [Crates in use](./crates.md)
 

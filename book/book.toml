@@ -3,7 +3,7 @@ authors = ["Gábor Szabó"]
 language = "en"
 multilingual = false
 src = "src"
-title = "The Axum book"
+title = "The axum by examples book"
 description = ""
 
 # Add github icon to the menu
