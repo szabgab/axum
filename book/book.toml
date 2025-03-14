@@ -8,9 +8,10 @@ description = ""
 
 # Add github icon to the menu
 [output.html]
-git-repository-url = "https://github.com/tokio-rs/axum"
 git-repository-icon = "fa-github"
+#git-repository-url = "https://github.com/tokio-rs/axum"
 #edit-url-template = "https://github.com/tokio-rs/axum/edit/main/book/{path}"
+git-repository-url = "https://github.com/szabgab/axum"
 edit-url-template = "https://github.com/szabgab/axum/blob/book/book/{path}"
 
 # Embedding and the footer
