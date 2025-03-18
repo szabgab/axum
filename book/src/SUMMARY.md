@@ -1,0 +1,92 @@
+# Summary
+
+- [axum](./index.md)
+  - [Goals](./goals.md)
+  - [Notes](./notes.md)
+  - [How to run the examples?](./how-to-run-the-exampes.md)
+  - [How to run the tests?](./how-to-run-the-tests.md)
+  - [More examples, tutorials](./more-examples.md)
+  - [ECOSYSTEM](./ecosystem.md)
+  - [Crates in use](./crates.md)
+  - [Outline](./outline.md)
+
+- [Introduction](./introduction.md)
+  - [Hello World](./hello-world.md)
+  - [Echo GET](./echo-get.md)
+  - [Echo POST](./echo-post.md)
+  - [Path parameters](./path-parameters.md)
+
+- [Input validation](./validation.md)
+  - [Versioning - path parameter with fixed values](./versioning.md)
+  - [Query params - GET requests](./query-params-with-empty-strings.md)
+  - [Form - POST request](./form.md)
+  - [Validator](./validator.md)
+
+- [Middleware](./middleware.md)
+  - [print-request-response](./print-request-response.md)
+
+- [Templating Systems](./templating-systems.md)
+  - [Askama Templates](./templates.md)
+  - [Minijinja templates](./templates-minijinja.md)
+
+## More
+
+- [Global 404 handler](./global-404-handler.md)
+- [Redirect](./redirect.md)
+- [Minimal logging setup](./logging.md)
+- [Anyhow error response](./anyhow-error-response.md)
+- [compression](./compression.md)
+- [testing](./testing.md)
+- [Handle HEAD request](./handle-head-request.md)
+- [todos](./todos.md)
+- [readme](./example-readme.md)
+
+# More Examples
+
+- [TODO](./todo.md)
+  - [cors](./cors.md)
+  - [consume-body-in-extractor-or-middleware](./consume-body-in-extractor-or-middleware.md)
+  - [customize-extractor-error](./customize-extractor-error.md)
+  - [customize-path-rejection](./customize-path-rejection.md)
+  - [dependency-injection](./dependency-injection.md)
+  - [error-handling](./error-handling.md)
+  - [graceful-shutdown](./graceful-shutdown.md)
+  - [jwt](./jwt.md)
+  - [http-proxy](./http-proxy.md)
+  - [multipart-form](./multipart-form.md)
+  - [reqwest-response](./reqwest-response.md)
+  - [parse-body-based-on-content-type](./parse-body-based-on-content-type.md)
+  - [unix-domain-socket](./unix-domain-socket.md)
+  - [tracing-aka-logging](./tracing-aka-logging.md)
+  - [tls-rustls](./tls-rustls.md)
+  - [tls-graceful-shutdown](./tls-graceful-shutdown.md)
+  - [stream-to-file](./stream-to-file.md)
+  - [static-file-server](./static-file-server.md)
+  - [sse](./sse.md)
+  - [simple-router-wasm](./simple-router-wasm.md)
+  - [serve-with-hyper](./serve-with-hyper.md)
+  - [routes-and-handlers-close-together](./routes-and-handlers-close-together.md)
+  - [reverse-proxy](./reverse-proxy.md)
+  - [request-id](./request-id.md)
+  - [prometheus-metrics](./prometheus-metrics.md)
+  - [oauth](./oauth.md)
+  - [low-level-rustls](./low-level-rustls.md)
+  - [low-level-openssl](./low-level-openssl.md)
+  - [low-level-native-tls](./low-level-native-tls.md)
+  - [key-value-store](./key-value-store.md)
+  - [auto-reload](./auto-reload.md)
+
+# Websockets
+  - [websockets](./websockets.md)
+  - [websockets-http2](./websockets-http2.md)
+  - [testing-websockets](./testing-websockets.md)
+  - [chat](./chat.md)
+
+# Databases
+  - [tokio-redis](./tokio-redis.md)
+  - [tokio-postgres](./tokio-postgres.md)
+  - [sqlx-postgres](./sqlx-postgres.md)
+  - [mongodb](./mongodb.md)
+  - [diesel-postgres](./diesel-postgres.md)
+  - [diesel-async-postgres](./diesel-async-postgres.md)
+
