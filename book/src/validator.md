@@ -1,4 +1,4 @@
-# validator
+{{#include ../../examples/validator/README.md }}
 
 ```toml
 {{#include ../../examples/validator/Cargo.toml }}
