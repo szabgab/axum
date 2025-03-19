@@ -13,7 +13,10 @@ $ curl http://localhost:3000/
 This returns the HTML page.
 
 ```
-$ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" --data "name=Foo&email=foo@bar.com" http://localhost:3000/
+$ curl -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data "name=Foo&email=foo@bar.com" \
+    http://localhost:3000/
 email='foo@bar.com'
 name='Foo'
 ```
@@ -21,14 +24,21 @@ name='Foo'
 ## Missing field
 
 ```
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" --data "name=Foo" http://localhost:3000/
+curl -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data "name=Foo" \
+    http://localhost:3000/
 Failed to deserialize form body: missing field `email`
 ```
 
 ## Extra fields are ignored
 
 ```
-$ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" --data "name=Foo&email=foo@bar.com&age=42" http://localhost:3000/
+$ curl -X POST \
+    -H "Content-Type: application/x-www-form-urlencoded"
+    --data "name=Foo&email=foo@bar.com&age=42" \
+    http://localhost:3000/
 email='foo@bar.com'
 name='Foo'
 ```
+
