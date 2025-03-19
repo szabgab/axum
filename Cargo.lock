@@ -1449,6 +1449,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "example-echo-get"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "http-body-util",
+ "serde",
+ "tokio",
+ "tower 0.5.2",
+]
+
+[[package]]
+name = "example-echo-post"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "http-body-util",
+ "mime",
+ "serde",
+ "tokio",
+ "tower 0.5.2",
+]
+
+[[package]]
 name = "example-error-handling"
 version = "0.1.0"
 dependencies = [
@@ -1510,7 +1533,9 @@ name = "example-hello-world"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "http-body-util",
  "tokio",
+ "tower 0.5.2",
 ]
 
 [[package]]
@@ -1599,6 +1624,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "example-minimal-tracing"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "example-mongodb"
 version = "0.1.0"
 dependencies = [
@@ -1651,6 +1686,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "example-path-parameters"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "http-body-util",
+ "tokio",
+ "tower 0.5.2",
+]
+
+[[package]]
 name = "example-print-request-response"
 version = "0.1.0"
 dependencies = [
@@ -1689,10 +1734,25 @@ name = "example-readme"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "http-body-util",
+ "mime",
  "serde",
+ "serde_json",
  "tokio",
+ "tower 0.5.2",
  "tracing",
  "tracing-subscriber",
+]
+
+[[package]]
+name = "example-redirect"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "http-body-util",
+ "serde",
+ "tokio",
+ "tower 0.5.2",
 ]
 
 [[package]]
@@ -1794,6 +1854,7 @@ name = "example-static-file-server"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "http-body-util",
  "tokio",
  "tower 0.5.2",
  "tower-http 0.6.2",
@@ -1831,8 +1892,10 @@ name = "example-templates-minijinja"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "http-body-util",
  "minijinja",
  "tokio",
+ "tower 0.5.2",
 ]
 
 [[package]]
@@ -1890,7 +1953,10 @@ name = "example-todos"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "http-body-util",
+ "mime",
  "serde",
+ "serde_json",
  "tokio",
  "tower 0.5.2",
  "tower-http 0.6.2",
@@ -4369,9 +4435,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.134"
+version = "1.0.140"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d00f4175c42ee48b15416f6193a959ba3a0d67fc699a0db9ad12df9f83991c7d"
+checksum = "20068b6e96dc6c9bd23e01df8827e6c7e1f2fddd43c21810382803c136b99373"
 dependencies = [
  "indexmap 2.7.0",
  "itoa",
