@@ -29,7 +29,7 @@ async fn get_page(app: Router, path: &str) -> (StatusCode, String, String) {
     (status, content_type, html)
 }
 
-async fn ck(app: Router, path: &str, status: StatusCode, content_type: &str, content: &str) {
+async fn check(app: Router, path: &str, status: StatusCode, content_type: &str, content: &str) {
     let (actual_status, actual_content_type, actual_content) = get_page(app, path).await;
     assert_eq!(status, actual_status);
     assert_eq!(content_type, actual_content_type);
@@ -39,21 +39,21 @@ async fn ck(app: Router, path: &str, status: StatusCode, content_type: &str, con
 #[tokio::test]
 async fn test_using_serve_dir() {
     let app = using_serve_dir;
-    ck(app(), "/assets/index.html", SC::OK, HTML, INDEX_HTML).await;
-    ck(app(), "/assets/script.js", SC::OK, JS, SCRIPT_JS).await;
-    ck(app(), "/assets/", SC::OK, HTML, INDEX_HTML).await;
+    check(app(), "/assets/index.html", SC::OK, HTML, INDEX_HTML).await;
+    check(app(), "/assets/script.js", SC::OK, JS, SCRIPT_JS).await;
+    check(app(), "/assets/", SC::OK, HTML, INDEX_HTML).await;
 
-    ck(app(), "/assets/other.html", SC::NOT_FOUND, "", "").await;
+    check(app(), "/assets/other.html", SC::NOT_FOUND, "", "").await;
 }
 
 #[tokio::test]
 async fn test_using_serve_dir_with_assets_fallback() {
     let app = using_serve_dir_with_assets_fallback;
-    ck(app(), "/assets/index.html", SC::OK, HTML, INDEX_HTML).await;
-    ck(app(), "/assets/script.js", SC::OK, JS, SCRIPT_JS).await;
-    ck(app(), "/assets/", SC::OK, HTML, INDEX_HTML).await;
+    check(app(), "/assets/index.html", SC::OK, HTML, INDEX_HTML).await;
+    check(app(), "/assets/script.js", SC::OK, JS, SCRIPT_JS).await;
+    check(app(), "/assets/", SC::OK, HTML, INDEX_HTML).await;
 
-    ck(
+    check(
         app(),
         "/foo",
         SC::OK,
