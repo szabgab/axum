@@ -1,7 +1,6 @@
 [book]
 authors = ["Gábor Szabó"]
 language = "en"
-multilingual = false
 src = "pages"
 title = "The axum by examples book"
 description = ""
