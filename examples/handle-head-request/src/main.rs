@@ -5,10 +5,12 @@
 //! ```
 
 use axum::response::{IntoResponse, Response};
-use axum::{http, routing::get, Router};
+use axum::{http, routing::get, routing::head, Router};
 
 fn app() -> Router {
-    Router::new().route("/get-head", get(get_head_handler))
+    Router::new()
+        .route("/my-get", get(get_handler))
+        .route("/my-head", head(head_handler))
 }
 
 #[tokio::main]
@@ -22,11 +24,11 @@ async fn main() {
 
 // GET routes will also be called for HEAD requests but will have the response body removed.
 // You can handle the HEAD method explicitly by extracting `http::Method` from the request.
-async fn get_head_handler(method: http::Method) -> Response {
+async fn get_handler(method: http::Method) -> Response {
     // it usually only makes sense to special-case HEAD
     // if computing the body has some relevant cost
     if method == http::Method::HEAD {
-        return ([("x-some-header", "header from HEAD")]).into_response();
+        return ([("x-some-header", "header from HEAD in get-handler")]).into_response();
     }
 
     // then do some computing task in GET
@@ -39,6 +41,13 @@ fn do_some_computing_task() {
     // TODO
 }
 
+// HET routes will be called only for HEAD requests.
+async fn head_handler() -> Response {
+    // it usually only makes sense to special-case HEAD
+    // if computing the body has some relevant cost
+    ([("x-some-header", "header from HEAD in head-handler")]).into_response()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -48,11 +57,11 @@ mod tests {
     use tower::ServiceExt;
 
     #[tokio::test]
-    async fn test_get() {
+    async fn test_get_from_get_handler() {
         let app = app();
 
         let response = app
-            .oneshot(Request::get("/get-head").body(Body::empty()).unwrap())
+            .oneshot(Request::get("/my-get").body(Body::empty()).unwrap())
             .await
             .unwrap();
 
@@ -68,12 +77,51 @@ mod tests {
         let app = app();
 
         let response = app
-            .oneshot(Request::head("/get-head").body(Body::empty()).unwrap())
+            .oneshot(Request::head("/my-get").body(Body::empty()).unwrap())
             .await
             .unwrap();
 
         assert_eq!(response.status(), StatusCode::OK);
-        assert_eq!(response.headers()["x-some-header"], "header from HEAD");
+        assert_eq!(
+            response.headers()["x-some-header"],
+            "header from HEAD in get-handler"
+        );
+
+        let body = response.collect().await.unwrap().to_bytes();
+        assert!(body.is_empty());
+    }
+
+    #[tokio::test]
+    async fn test_get_from_head_handler() {
+        let app = app();
+
+        let response = app
+            .oneshot(Request::get("/my-head").body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::METHOD_NOT_ALLOWED);
+        assert!(!response.headers().contains_key("x-some-header"));
+        assert_eq!(response.headers()["allow"], "HEAD");
+
+        let body = response.collect().await.unwrap().to_bytes();
+        assert!(body.is_empty());
+    }
+
+    #[tokio::test]
+    async fn test_head_from_head_handler() {
+        let app = app();
+
+        let response = app
+            .oneshot(Request::head("/my-head").body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
+        assert_eq!(
+            response.headers()["x-some-header"],
+            "header from HEAD in head-handler"
+        );
 
         let body = response.collect().await.unwrap().to_bytes();
         assert!(body.is_empty());
