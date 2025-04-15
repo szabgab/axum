@@ -152,8 +152,16 @@ faster if instead of checking it in a browser you write test. This is especially
 to be consumed by other software anyway.
 
 
+In `main.rs` we need to mention the test module:
+
 ```rust
-{{#include ../../examples/hello-world/src/main.rs:30:51 }}
+{{#include ../../examples/hello-world/src/main.rs:30:32 }}
+```
+
+### tests.rs
+
+```rust
+{{#include ../../examples/hello-world/src/tests.rs }}
 ```
 
 ## The full example

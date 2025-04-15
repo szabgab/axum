@@ -1,7 +1,7 @@
 # How to run the tests?
 
 ```
-cargo run -p example-NAME
+cargo test -p NAME-OF-THE-EXAMPLE
 ```
 
 Specifically for the hello-world example:

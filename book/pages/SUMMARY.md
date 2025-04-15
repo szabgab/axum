@@ -5,7 +5,6 @@
   - [Notes](./notes.md)
   - [How to run the examples?](./how-to-run-the-exampes.md)
   - [How to run the tests?](./how-to-run-the-tests.md)
-  - [More examples, tutorials](./more-examples.md)
   - [ECOSYSTEM](./ecosystem.md)
   - [Crates in use](./crates.md)
   - [Outline](./outline.md)

@@ -3,7 +3,7 @@
 You can run the examples either from the git repository of axum or as stand alone applications.
 
 ```
-git clone https://github.com/tokio-rs/axum.git
+git clone https://github.com/szabgab/axum.git
 cd axum
 cargo run -p example-NAME
 ```
