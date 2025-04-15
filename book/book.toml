@@ -16,5 +16,5 @@ edit-url-template = "https://github.com/szabgab/axum/blob/book/book/{path}"
 # Embedding and the footer
 [preprocessor.embedify]
 footer.enable = true
-footer.message = "Copyright © 2025 • Created with ❤️  by the authors"
+footer.message = "Copyright © 2025 • Created with ❤️  by the authors of axum an [Gabor Szabo](https://szabgab.com/)"
 

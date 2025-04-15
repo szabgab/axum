@@ -2,7 +2,7 @@
 
 An outline for the book
 
-- [Hello World with GET](./hello-world.md) - PR sent with test, test also included here
+- [Hello World with GET](./hello-world.md)
 
 
 - [Echo GET](./echo-get.md) Accept parameters in a GET request.
