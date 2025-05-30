@@ -1580,6 +1580,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "example-hello-text"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "headers",
+ "http-body-util",
+ "tokio",
+ "tower 0.5.2",
+]
+
+[[package]]
 name = "example-hello-world"
 version = "0.1.0"
 dependencies = [
