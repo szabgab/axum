@@ -11,6 +11,9 @@ cargo new hello-world
 cd hello-world
 cargo add axum
 cargo add tokio -F full
+
+cargo add --dev http-body-util
+cargo add --dev tower -F util
 ```
 
 We also have two additional crates that we use to test our application.

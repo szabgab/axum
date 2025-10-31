@@ -2,7 +2,8 @@
 
 An outline for the book
 
-- [Hello World with GET](./hello-world.md)
+- [Hello Plain World](./hello-plain-world.md) - `text/plain`.
+- [Hello World with GET](./hello-world.md) - Set Content-type to `text/html`.
 
 
 - [Echo GET](./echo-get.md) Accept parameters in a GET request.
