@@ -3,11 +3,11 @@
 axum uses the [tracing](https://crates.io/crates/tracing) and [tracing-subscriber](https://crates.io/crates/tracing-subscriber) for logging so we need to include both.
 
 ```toml
-{{#include ../../examples/minimal-tracing/Cargo.toml}
+{{#include ../../examples/minimal-tracing/Cargo.toml}}
 ```
 
 ```rust
-{{#include ../../examples/minimal-tracing/src/main.rs}
+{{#include ../../examples/minimal-tracing/src/main.rs}}
 ```
 
 When we start the application with `cargo run` we'll see line like this on the terminal:
