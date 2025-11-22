@@ -12,3 +12,9 @@
 {{#include ../../examples/path-parameter/src/main.rs }}
 ```
 
+## Tests
+
+```rust
+{{#include ../../examples/path-parameter/src/tests.rs }}
+```
+
