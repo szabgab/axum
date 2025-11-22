@@ -1,3 +1,6 @@
 target
 .DS_Store
 .vscode
+/book/book/
+*.swp
+*.bak

@@ -18,6 +18,16 @@ struct AppState {
 
 #[tokio::main]
 async fn main() {
+    let app = app();
+    // run it
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
+        .await
+        .unwrap();
+    println!("listening on {}", listener.local_addr().unwrap());
+    axum::serve(listener, app).await.unwrap();
+}
+
+fn app() -> Router {
     // init template engine and add templates
     let mut env = Environment::new();
     env.add_template("layout", include_str!("../templates/layout.jinja"))
@@ -33,18 +43,11 @@ async fn main() {
     let app_state = Arc::new(AppState { env });
 
     // define routes
-    let app = Router::new()
+    Router::new()
         .route("/", get(handler_home))
         .route("/content", get(handler_content))
         .route("/about", get(handler_about))
-        .with_state(app_state);
-
-    // run it
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
-        .await
-        .unwrap();
-    println!("listening on {}", listener.local_addr().unwrap());
-    axum::serve(listener, app).await.unwrap();
+        .with_state(app_state)
 }
 
 async fn handler_home(State(state): State<Arc<AppState>>) -> Result<Html<String>, StatusCode> {
@@ -84,4 +87,80 @@ async fn handler_about(State(state): State<Arc<AppState>>) -> Result<Html<String
     }).unwrap();
 
     Ok(Html(rendered))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use axum::{body::Body, http::Request, http::StatusCode};
+    use http_body_util::BodyExt;
+    use tower::ServiceExt;
+
+    #[tokio::test]
+    async fn test_main_page() {
+        let response = app()
+            .oneshot(Request::builder().uri("/").body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
+        let body = response.into_body();
+        let bytes = body.collect().await.unwrap().to_bytes();
+        let html = String::from_utf8(bytes.to_vec()).unwrap();
+
+        check_layout(&html);
+        assert!(html.contains("<title>Website Name | Home </title>"));
+        assert!(html.contains("<h1>Home</h1>"));
+        assert!(html.contains("<p>Hello World!</p>"));
+    }
+
+    #[tokio::test]
+    async fn test_content_page() {
+        let response = app()
+            .oneshot(
+                Request::builder()
+                    .uri("/content")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
+        let body = response.into_body();
+        let bytes = body.collect().await.unwrap().to_bytes();
+        let html = String::from_utf8(bytes.to_vec()).unwrap();
+
+        check_layout(&html);
+        assert!(html.contains("<title>Website Name | Content </title>"));
+        assert!(html.contains("<h1>Content</h1>"));
+        assert!(html.contains("<li>Data 1</li>"));
+    }
+
+    #[tokio::test]
+    async fn test_about_page() {
+        let response = app()
+            .oneshot(
+                Request::builder()
+                    .uri("/about")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
+        let body = response.into_body();
+        let bytes = body.collect().await.unwrap().to_bytes();
+        let html = String::from_utf8(bytes.to_vec()).unwrap();
+
+        check_layout(&html);
+        assert!(html.contains("<title>Website Name | About </title>"));
+        assert!(html.contains("<h1>About</h1>"));
+        assert!(html.contains("<p>Simple demonstration layout for an axum project with minijinja as templating engine.</p>"));
+    }
+
+    fn check_layout(html: &str) {
+        assert!(html.contains(r#"<li><a href="/">Home</a></li>"#));
+    }
 }
