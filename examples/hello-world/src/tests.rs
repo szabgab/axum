@@ -17,4 +17,3 @@ async fn test_main_page() {
 
     assert_eq!(html, "<h1>Hello, World!</h1>");
 }
-

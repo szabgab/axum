@@ -29,4 +29,3 @@ async fn handler() -> Html<&'static str> {
 
 #[cfg(test)]
 mod tests;
-
