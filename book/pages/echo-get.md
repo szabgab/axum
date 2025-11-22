@@ -38,3 +38,9 @@ There are two function handling two paths:
 ```rust
 {{#include ../../examples/echo-get/src/main.rs }}
 ```
+
+## Testing
+
+```rust
+{{#include ../../examples/echo-get/src/tests.rs }}
+```
