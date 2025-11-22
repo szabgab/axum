@@ -6,19 +6,20 @@ const COOKIE_NAME: &str = "visited";
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new()
-        .route("/", get(increment))
-        .route("/remove", get(remove))
-        .layer(CookieManagerLayer::new());
-
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
     println!("Listening on http://{}", addr);
-    axum::serve(listener, app.into_make_service())
+    axum::serve(listener, app().into_make_service())
         .await
         .unwrap();
 }
 
+fn app() -> Router {
+    Router::new()
+        .route("/", get(increment))
+        .route("/remove", get(remove))
+        .layer(CookieManagerLayer::new())
+}
 async fn increment(cookies: Cookies) -> Html<String> {
     let visited = cookies
         .get(COOKIE_NAME)
@@ -35,3 +36,6 @@ async fn remove(cookies: Cookies) -> Html<&'static str> {
     cookies.remove(Cookie::new(COOKIE_NAME, ""));
     Html(r#"Counter has been reset. <a href="/">Go back</a>"#.into())
 }
+
+#[cfg(test)]
+mod tests;

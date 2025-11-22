@@ -94,7 +94,9 @@ name = "counter-with-tower-cookies"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "http-body-util",
  "tokio",
+ "tower",
  "tower-cookies",
 ]
 

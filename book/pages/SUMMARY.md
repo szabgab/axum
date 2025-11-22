@@ -90,3 +90,5 @@
   - [diesel-postgres](./diesel-postgres.md)
   - [diesel-async-postgres](./diesel-async-postgres.md)
 
+# Other
+  - [Counter with Tower-cookies](./counter-with-tower-cookies.md)
