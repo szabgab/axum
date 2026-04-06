@@ -13,3 +13,9 @@ thiserror = "2"
 tokio = { version = "1.20", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+headers = "0.4.1"
+http-body-util = "0.1.3"
+mime = "0.3.17"
+tower = { version = "0.5.3", features = ["util"] }

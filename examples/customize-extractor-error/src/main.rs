@@ -22,10 +22,7 @@ async fn main() {
         .init();
 
     // Build our application with some routes
-    let app = Router::new()
-        .route("/with-rejection", post(with_rejection::handler))
-        .route("/custom-extractor", post(custom_extractor::handler))
-        .route("/derive-from-request", post(derive_from_request::handler));
+    let app = create_router();
 
     // Run our application
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
@@ -34,3 +31,17 @@ async fn main() {
     tracing::debug!("listening on {}", listener.local_addr().unwrap());
     axum::serve(listener, app).await;
 }
+
+fn create_router() -> Router {
+    Router::new()
+        .route("/with-rejection", post(with_rejection::handler))
+        .route("/custom-extractor", post(custom_extractor::handler))
+        .route("/derive-from-request", post(derive_from_request::handler))
+}
+
+#[cfg(test)]
+mod tests_custom_extractor;
+#[cfg(test)]
+mod tests_derive_from_request;
+#[cfg(test)]
+mod tests_with_rejection;
